@@ -1,0 +1,31 @@
+{
+    "books": [
+        {
+            "title": "Emma",
+            "author": "Jane Austen",
+            "isbn": "9780141439587",
+            "pages": 512,
+            "readStatus": "read",
+            "currentPage": 100,
+            "coverURL": "https://covers.openlibrary.org/b/isbn/9780141439587-M.jpg"
+        },
+        {
+            "title": "Little Women",
+            "author": "Louisa May Alcott",
+            "isbn": "9780140390698",
+            "pages": 504,
+            "readStatus": "read",
+            "currentPage": 300,
+            "coverURL": "https://covers.openlibrary.org/b/isbn/9780140390698-M.jpg"
+        },
+        {
+            "title": "Pride and Prejudice",
+            "author": "Jane Austen",
+            "isbn": "9780141439518",
+            "pages": 435,
+            "readStatus": "currentlyReading",
+            "currentPage": 200,
+            "coverURL": "https://covers.openlibrary.org/b/isbn/9780141439518-M.jpg"
+        }
+    ]
+}
