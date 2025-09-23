@@ -78,7 +78,7 @@
         date: "9/4/2025",
         pagesFrom: "1",
         pagesTo: "25",
-        message: "test4",
+        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur fringilla interdum velit. Maecenas eu euismod tellus. Ut accumsan ac augue facilisis facilisis. Maecenas eget vulputate neque. Cras dictum sollicitudin turpis nec condimentum. Curabitur nunc ante, aliquet quis vehicula vehicula, sagittis et odio. Ut congue massa sit amet neque placerat vestibulum. Cras eget facilisis enim. Donec eu felis scelerisque, laoreet erat dictum, sollicitudin est. Vestibulum lobortis dui et lacus consequat feugiat.",
       },
       {
         id: 5,
@@ -86,7 +86,7 @@
         date: "9/4/2025",
         pagesFrom: "160",
         pagesTo: "175",
-        message: "test2",
+        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc augue felis, malesuada vel vehicula in, facilisis ut ligula. Fusce sagittis tortor elit, et viverra quam tempor venenatis. Quisque ut sem sapien. Sed quis ultrices nisl. Nulla vel laoreet lacus. Aenean tempus lectus vel lorem semper rhoncus. Sed lacinia, dolor id accumsan ornare, leo tellus ullamcorper purus, vitae malesuada erat lacus sed ante.",
       },
     ],
   });
@@ -153,7 +153,7 @@
 
   let readingGoal = user.goal;
 
-  let custom_goals = user.customGoals;
+  let custom_goals = $state(user.customGoals);
 
   let updateGoal = "";
 
@@ -624,7 +624,7 @@
         {#if readingGoal}
           <h2>Reading Goal</h2>
           <div>
-            <p>{progressBar()} out of {readingGoal}</p>
+            <h3>{progressBar()} out of {readingGoal}</h3>
             <progress id="progressBar" max="100" value={update_progress_bar}
             ></progress>
           </div>
@@ -703,7 +703,7 @@
           >
         </div>
 
-        <h2>Custom Goals</h2>
+        <h2 style="margin-top: 10px">Custom Goals</h2>
         <button
           class="new-goal-btn"
           style="font-size: 20px; margin-top: -30px"
@@ -717,19 +717,16 @@
           {#each custom_goals as goal}
             <div style="padding-top: 10px; text-align: left;">
               <input
-                id="goal"
+                id={goal}
                 type="checkbox"
                 value={goal}
-                onclick={() => {
+                onchange={() => {
                   for (let i = 0; i < custom_goals.length; i++) {
                     if (custom_goals[i] == goal) {
-                      console.log(user.customGoals);
-                      let test = user.customGoals;
-                      test = test.splice(i, 1);
-                      user.customGoals = test;
 
-                      // for some reason, when one check box goes away, the next one becomes checked. this fixed it
-                      document.querySelector("#goal").checked = false;
+                      custom_goals = custom_goals.filter(item => item !== goal)
+
+                      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false)
 
                       rewardPainting();
                     }
@@ -783,7 +780,7 @@
                   <h2 style="text-align: center; margin-top: -20px">{currJournalView.date}</h2>
 
                   <h3 style="text-align: center">Pages {currJournalView.pagesFrom} to {currJournalView.pagesTo}</h3>
-                  <p style="margin-left: 100px; margin: right: 100px; margin-top: 20px" id="view-journal-entry-message">{currJournalView.message}</p>
+                  <p style="margin-left: 50px; margin-right: 50px; margin-top: 20px" id="view-journal-entry-message">{currJournalView.message}</p>
 
               </div>
 
