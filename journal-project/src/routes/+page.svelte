@@ -1,11 +1,7 @@
 <script>
-
   import Header from "../lib/assets/Header.svelte";
 
-
-  // import user from "../data/user.json";
-
-  // import books from "../data/test.json";
+  // test();
 
   let books = $state({
     books: [
@@ -23,7 +19,7 @@
         author: "Louisa May Alcott",
         isbn: "9780140390698",
         pages: 504,
-        readStatus: "read",
+        readStatus: "currentlyReading",
         currentPage: 300,
         coverURL: "https://covers.openlibrary.org/b/isbn/9780140390698-M.jpg",
       },
@@ -40,78 +36,98 @@
   });
 
   let user = $state({
-    "name": "Kelly Deal",
-    "accountCreated": "",
-    "goal": 0,
-    "customGoals": [
-        "Read a sequel",
-        "Finish a series",
-        "Read 5 Non Fiction Books"
-    ]
-});
+    name: "Kelly Deal",
+    accountCreated: "",
+    goal: 10,
+    customGoals: [
+      "Read a sequel",
+      "Finish a series",
+      "Read 5 Non Fiction Books",
+    ],
+  });
 
-let journalEntry = $state({
-    "journalEntry": [{
-        "id": 1,
-        "bookTitle": "Little Women",
-        "date": "9/1/2025",
-        "pagesFrom": "25",
-        "pagesTo": "55",
-        "message": "test1"
-    },
-    {
-        "id": 2,
-        "bookTitle": "Little Women",
-        "date": "9/2/2025",
-        "pagesFrom": "55",
-        "pagesTo": "125",
-        "message": "test2"
-    },
-    {
-        "id": 3,
-        "bookTitle": "Little Women",
-        "date": "9/3/2025",
-        "pagesFrom": "125",
-        "pagesTo": "160",
-        "message": "test3"
-    },
-    {
-        "id": 4,
-        "bookTitle": "Emma",
-        "date": "9/4/2025",
-        "pagesFrom": "1",
-        "pagesTo": "25",
-        "message": "test4"
-    },
-    {
-        "id": 5,
-        "bookTitle": "Little Women",
-        "date": "9/4/2025",
-        "pagesFrom": "160",
-        "pagesTo": "175",
-        "message": "test2"
-    }
-    ]
-}
-);
+  let journalEntry = $state({
+    journalEntry: [
+      {
+        id: 1,
+        bookTitle: "Little Women",
+        date: "9/1/2025",
+        pagesFrom: "25",
+        pagesTo: "55",
+        message: "test1",
+      },
+      {
+        id: 2,
+        bookTitle: "Little Women",
+        date: "9/2/2025",
+        pagesFrom: "55",
+        pagesTo: "125",
+        message: "test2",
+      },
+      {
+        id: 3,
+        bookTitle: "Little Women",
+        date: "9/3/2025",
+        pagesFrom: "125",
+        pagesTo: "160",
+        message: "test3",
+      },
+      {
+        id: 4,
+        bookTitle: "Emma",
+        date: "9/4/2025",
+        pagesFrom: "1",
+        pagesTo: "25",
+        message: "test4",
+      },
+      {
+        id: 5,
+        bookTitle: "Little Women",
+        date: "9/4/2025",
+        pagesFrom: "160",
+        pagesTo: "175",
+        message: "test2",
+      },
+    ],
+  });
+
+  let gallery = $state({
+    gallery: [
+      {
+        date: "",
+        artId: "SK-C-214",
+        imgURL:
+          "https://lh3.googleusercontent.com/_gkvrwgCC-JpNkZRpv0IM0giM23DnBm8a5kS_dc_nhE1gZmxGM_wJIGnwFr8tVFURhao5SuWUxOkwniEcvWottBGuN4=s0",
+      },
+      {
+        date: "",
+        artId: "SK-A-138",
+        imgURL:
+          "https://lh3.googleusercontent.com/RXnCCOk53g6rXEPxVOWPjgTEqKzU0AUaLtXPT7-6ArjUeYueBsIvVZPnsqx0pEdHni8er7oagIHk2jlB4-U3a_kP5rg=s0",
+      },
+      {
+        date: "",
+        artId: "SK-A-2565",
+        imgURL:
+          "https://lh3.googleusercontent.com/Jq-ZhL8kU6AFoC5F804qAYSG6kmrBKMZRwtYj92wh3KfS_100G1hKXTfLy-Zm5yq2kbCNv6TZRtyVVRGjgidsvtdaO-T=s0",
+      },
+    ],
+  });
+
+  // returns current date as 1/1/2025
 
   function getDate() {
     let today = new Date();
+    let month = today.getMonth();
+    let day = today.getDate();
+    let year = today.getFullYear();
 
-    let month = today.getMonth()
-
-    let day = today.getDate()
-
-    let year = today.getFullYear()
-
-    return (month + 1) + "/" + day + "/" + year
+    return month + 1 + "/" + day + "/" + year;
   }
 
-  getDate()
+  // Hidden Divs
 
   let isOverlayVisHidden = $state(true);
-
-  let readingGoal = 20;
 
   let isGoalVisHidden = $state(true);
 
@@ -119,11 +135,25 @@ let journalEntry = $state({
 
   let isNewEntryHidden = $state(true);
 
-  let custom_goals = user.customGoals;
-
   function toggleGoalVis() {
     isGoalVisHidden = !isGoalVisHidden;
   }
+
+  let isNewJournalEntryHidden = $state(true);
+
+  function toggleJournalEntryVis() {
+    isNewJournalEntryHidden = !isNewJournalEntryHidden;
+  }
+
+  let isPaintingViewHidden = $state(true);
+
+  let isJournalViewHidden = $state(true);
+
+  // Goal Section
+
+  let readingGoal = user.goal;
+
+  let custom_goals = user.customGoals;
 
   let updateGoal = "";
 
@@ -144,10 +174,14 @@ let journalEntry = $state({
     return count;
   }
 
-  let update_progress_bar = (progressBar() / readingGoal) * 100;
+  let update_progress_bar = $state((progressBar() / readingGoal) * 100);
   function updateProgressBar() {
     update_progress_bar = (progressBar() / readingGoal) * 100;
   }
+
+  let isCustomGoalChecked = $state(false);
+
+  // Currently Reading
 
   function currentlyReading() {
     let currentlyReading = [];
@@ -159,12 +193,6 @@ let journalEntry = $state({
     }
 
     return currentlyReading;
-  }
-
-  let isNewJournalEntryHidden = $state(true);
-
-  function toggleJournalEntryVis() {
-    isNewJournalEntryHidden = !isNewJournalEntryHidden;
   }
 
   let bookTitle = "";
@@ -198,27 +226,29 @@ let journalEntry = $state({
     isOverlayVisHidden = !isOverlayVisHidden;
   }
 
-  let isbn = "";
-
   let newBookEntry = {
     title: "",
     author: "",
-    pageCount: "",
+    pages: 0,
     readStatus: "",
-    progress: "",
+    currentPage: 0,
   };
 
   let new_journal_entry = {
-          "id": 1,
-        "bookTitle": "",
-        "date": "",
-        "pagesFrom": "",
-        "pagesTo": "",
-        "message": ""
-  }
+    id: 1,
+    bookTitle: "",
+    date: "",
+    pagesFrom: 0,
+    pagesTo: 0,
+    message: "",
+  };
 
-  let newJournal
+  let newJournal;
 
+  // Search
+  // open books api stopped working :(
+
+  let isbn = "";
   function search() {
     console.log(isbn);
 
@@ -258,31 +288,88 @@ let journalEntry = $state({
 
   function manualEntry() {
     newBookEntry.readStatus = "currentlyReading";
-    newBookEntry.progress = 0;
+    newBookEntry.currentPage = 0;
+    newBookEntry.pageCount = Number(newBookEntry.pageCount);
 
     console.log(newBookEntry);
-
-    books.books.push(newBookEntry)
   }
 
-  function newCustomGoal() {
-    console.log("new custom goal");
+  // New Journal Entry
+
+  let isChecked = false;
+
+  // Journal View
+
+  let currJournalView = {}
+  // Gallery
+  let paintingURL = $state("");
+
+  let painting = {
+    date: "",
+    artId: "",
+    imgURL: "",
+    title: "",
+  };
+
+  function rewardPainting() {
+    let request =
+      "https://www.rijksmuseum.nl/api/en/collection?key=cLDgNrG3&type=painting&toppieces=true&ps=50";
+    fetch(request, {
+      mode: "cors",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((responseData) => {
+        let i = Math.floor(Math.random() * 49);
+
+        console.log(responseData.artObjects[i]);
+        painting.imgURL = responseData.artObjects[i].webImage.url;
+        painting.date = getDate();
+        painting.artId = responseData.artObjects[i].objectNumber;
+        painting.title = responseData.artObjects[i].longTitle;
+
+        console.log(painting);
+        paintingURL = painting.imgURL;
+        gallery.gallery.push(painting);
+        isPaintingViewHidden = false;
+        isOverlayVisHidden = false;
+      });
+  }
+
+  let isGalleryInfoHidden = $state(true);
+
+  function hoverGalleryInfo() {
+    isGalleryInfoHidden = !isGalleryInfoHidden;
   }
 </script>
 
-<main style="background-color: #efefef">
+<main style="background-color: #443B3D">
   <header>
     <Header />
   </header>
 
   <container style="padding: 20px;">
-    <div class="mainView" style="background-color: #efefef">
+    <!-- Overlay for all popups  -->
+    <div class="overlay" hidden={isOverlayVisHidden}></div>
+
+    <div class="mainView" style="background-color: #443B3D">
       <div class="newJournalEntry">
         <h2>New Journal Entry</h2>
-        <!-- <a href="/journal-entry/new"><button>I read today!</button></a> -->
-        <button class="main-btn" onclick={toggleJournalEntryVis}
-          >I read today!</button
-        >
+
+        <div style="text-align: center">
+          <button
+            style="margin-top: 30px"
+            class="main-btn"
+            onclick={() => {
+              toggleJournalEntryVis();
+              isOverlayVisHidden = false;
+            }}>I read today!</button
+          >
+        </div>
         <div
           hidden={isNewJournalEntryHidden}
           style="
@@ -290,94 +377,207 @@ let journalEntry = $state({
                         top: 0;
                         left: 0;
                         width: 500px;
-                        height: 550px;
+                        min-height: 200px;
+                        max-height: 700px;
                         margin-top: 80px;
                         /* height: calc(100% - 80px);*/
                         z-index: 100;
-                        background-color: cornflowerblue"
+                        background-color: white;
+                        margin-left: 35.3%;
+                        margin-top: 150px;"
         >
-          <label for="bookTitle">Book:</label><br />
-
-          <select
-            bind:value={selected}
-            onchange={() => {
-              console.log(selected);
-              if (selected == "newBook") {
-                isNewBookHidden = false;
-                isNewEntryHidden = true;
-              } else if (selected != "") {
-                isNewBookHidden = true;
-                isNewEntryHidden = false;
-              } else {
-                isNewBookHidden = true;
-                isNewEntryHidden = true;
-              }
+          <button
+            class="icon-btn"
+            onclick={() => {
+              toggleJournalEntryVis();
+              isOverlayVisHidden = true;
             }}
+            ><i
+              class="bi bi-x-lg"
+              style="top: 0; right: 0; position: absolute; margin-top: 15px; margin-right: 15px; font-size: 20px"
+            ></i></button
           >
-            <option value="">Select...</option>
-            <option value="newBook">I started a new book</option>
-            {#each booksCurrent as book}
-              <option value={book}>{book}</option>
-            {/each}
-          </select><br />
 
-          <div hidden={isNewBookHidden}>
-            <!-- <input type="text" bind:value={isbn} /><button onclick={search}
+          <h2>New Journal Entry</h2>
+          <div style="margin-left: 100px">
+            <label for="bookTitle">Book:</label><br />
+            <div style="margin-bottom: 15px">
+              <select
+                id="selectBookTitle"
+                style="width: 300px"
+                bind:value={selected}
+                onchange={() => {
+                  console.log(selected);
+                  if (selected == "newBook") {
+                    isNewBookHidden = false;
+                    isNewEntryHidden = true;
+                  } else if (selected != "") {
+                    isNewBookHidden = true;
+                    isNewEntryHidden = false;
+                  } else {
+                    isNewBookHidden = true;
+                    isNewEntryHidden = true;
+                  }
+                }}
+              >
+                <option value="">Select...</option>
+                <option value="newBook">I started a new book</option>
+                {#each books.books as book}
+                {#if book.readStatus == "currentlyReading"}
+                  <option value={book.title}>{book.title}</option>
+                  {/if}
+                {/each}
+              </select>
+            </div>
+            <br />
+
+            <div hidden={isNewBookHidden}>
+              <!-- <input type="text" bind:value={isbn} /><button onclick={search}
               >Submit</button
                                 ><br /> -->
 
-            <!-- <input type="text" bind:value={newBookEntry.title} /> -->
-            <label>Title:</label><br />
-            <input type="text" bind:value={newBookEntry.title} /><br />
+              <!-- <input type="text" bind:value={newBookEntry.title} /> -->
+              <label>Title:</label><br />
+              <input id="newBookTitle" type="text" bind:value={newBookEntry.title} /><br />
 
-            <label>Autor:</label><br />
-            <input type="text" bind:value={newBookEntry.author} /><br />
+              <label>Autor:</label><br />
+              <input id="newBookAuthor" type="text" bind:value={newBookEntry.author} /><br />
 
-            <label>Page Count:</label><br />
-            <input
-              style="width: 300px"
-              type="int"
-              bind:value={newBookEntry.pageCount}
-            /><br />
+              <label>Page Count:</label><br />
+              <input
+              id="newBookPageCount"
+                style="width: 300px"
+                type="int"
+                bind:value={newBookEntry.pages}
+              /><br />
 
-            <button
-              class="main-btn"
-              onclick={() => {
-                manualEntry();
-                isNewBookHidden = true;
-                isNewEntryHidden = false;
-              }}>Add New Book</button
-            >
-          </div>
-
-          <div hidden={isNewEntryHidden}>
-            <h3>New Journal Entry for {newBookEntry.title}</h3>
-            <div
-              style="display: grid; grid-template-columns: 1fr 1fr; max-width: 300px"
-            >
-
-              <div style="grid-column: 1;">
-                <label>Pages From:</label><br />
-                <input id="newEntryPagesFrom" type="int" /><br />
-              </div>
-              <div style="grid-column: 2; padding-left: 10px">
-                <label>Pages To:</label><br />
-                <input id="newEntryPagesTo" type="int" /><br />
-              </div>
+              <button
+                style="margin-top: 20px; margin-bottom: 20px; margin-left: 60px"
+                class="main-btn"
+                onclick={() => {
+                  manualEntry();
+                  isNewBookHidden = true;
+                  isNewEntryHidden = false;
+                }}>Add New Book</button
+              >
             </div>
-            <label>Message:</label><br />
-            <textarea id="newEntryMessage"></textarea><br />
-            <button onclick={() => {
-              new_journal_entry.bookTitle = newBookEntry.title
-              new_journal_entry.pagesFrom = document.querySelector("#newEntryPagesFrom").value
-              new_journal_entry.pagesTo = document.querySelector("#newEntryPagesTo").value
-              new_journal_entry.message = document.querySelector("#newEntryMessage").value
-              new_journal_entry.date = getDate()
 
-              console.log(new_journal_entry)
+            <div hidden={isNewEntryHidden}>
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; max-width: 300px"
+              >
+                <div style="grid-column: 1;">
+                  <label>Pages From:</label><br />
+                  <input id="newEntryPagesFrom" type="int" /><br />
+                </div>
+                <div style="grid-column: 2; padding-left: 10px">
+                  <label>Pages To:</label><br />
+                  <input id="newEntryPagesTo" type="int" /><br />
+                </div>
+              </div>
 
-              journalEntry.journalEntry.push(new_journal_entry)
-            }}>Submit</button>
+              <div style="margin-bottom: 10px; margin-top: 20px">
+                <label for="mark-as-finished">Mark as Finished?</label>
+                <input
+                  if="mark-as-finished"
+                  type="checkbox"
+                  bind:checked={isChecked}
+                />
+              </div>
+
+              <br />
+              <label>Message:</label><br />
+              <textarea id="newEntryMessage"></textarea><br />
+              <button
+                style="margin-bottom: 20px; margin-top: 20px; margin-left: 95px "
+                class="main-btn"
+                onclick={() => {
+                  if (newBookEntry.title) {
+                    new_journal_entry.bookTitle = newBookEntry.title;
+                  } else {
+                    new_journal_entry.bookTitle = selected;
+                  }
+                  new_journal_entry.pagesFrom = Number(
+                    document.querySelector("#newEntryPagesFrom").value
+                  );
+                  new_journal_entry.pagesTo = Number(
+                    document.querySelector("#newEntryPagesTo").value
+                  );
+                  new_journal_entry.message =
+                    document.querySelector("#newEntryMessage").value;
+                  new_journal_entry.date = getDate();
+
+                  newBookEntry.currentPage = Number(
+                    document.querySelector("#newEntryPagesTo").value
+                  );
+
+                  if (isChecked) {
+                    newBookEntry.readStatus = "read";
+                  }
+
+                  let isNewBook = true;
+                  for (let i = 0; i < books.books.length; i++) {
+                    if (books.books[i].title == selected) {
+                      isNewBook = false;
+                      books.books[i].currentPage = Number(
+                        document.querySelector("#newEntryPagesTo").value
+                      );
+
+                      if (isChecked) {
+                        books.books[i].readStatus = "read";
+                      }
+
+
+                    }
+                  }
+
+                  if (isNewBook) {
+                        books.books.push(newBookEntry);
+                      }
+
+                  journalEntry.journalEntry.push(new_journal_entry);
+
+                  console.log(books.books);
+
+                  toggleJournalEntryVis();
+                  isOverlayVisHidden = true;
+
+                  if (isChecked) {
+                    rewardPainting();
+                    updateProgressBar();
+                  }
+
+                  newBookEntry = {
+    title: "",
+    author: "",
+    pages: 0,
+    readStatus: "",
+    currentPage: 0,
+  }
+
+  new_journal_entry =  {
+    id: 1,
+    bookTitle: "",
+    date: "",
+    pagesFrom: 0,
+    pagesTo: 0,
+    message: "",
+  }
+
+                  isNewBookHidden = true;
+                  isNewEntryHidden = true;
+
+                  document.querySelector("#newEntryPagesFrom").value = ""
+                  document.querySelector("#newEntryPagesTo").value = ""
+                  document.querySelector("#newEntryMessage").value = ""
+                  document.querySelector("#selectBookTitle").value = ""
+                  document.querySelector("#newBookTitle").value = ""
+                  document.querySelector("#newBookAuthor").value = ""
+                  document.querySelector("#newBookPageCount").value = 0
+
+                }}>Submit</button
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -386,9 +586,20 @@ let journalEntry = $state({
         <h2>Currently Reading</h2>
         <div class="bookDetails">
           {#each books.books as book}
-            {#if book.readStatus == "currentlyReading" && books.pagesFrom}
+            {#if book.readStatus == "currentlyReading"}
               <div class="bookCover">
-                <img src={book.coverURL} style="height: 150px" />
+                {#if book.coverURL}
+                  <img src={book.coverURL} style="height: 150px" />
+                {:else}
+                  <div
+                    style="display: flex; justify-content: center; align-items: center; width: 100px; height: 150px; border: 3px solid #915B49; background-color: #d4977a"
+                  >
+                    <i
+                      style="font-size: 40px; color: #915B49"
+                      class="bi bi-book-half"
+                    ></i>
+                  </div>
+                {/if}
               </div>
 
               <div class="bookInfo">
@@ -419,7 +630,8 @@ let journalEntry = $state({
           </div>
 
           <button
-            class="main-btn"
+            class="icon-btn"
+            style="text-decoration: underline; font-size: 1em; margin-top: 10px"
             onclick={() => {
               isGoalVisHidden = false;
               isOverlayVisHidden = false;
@@ -484,7 +696,6 @@ let journalEntry = $state({
             onclick={() => {
               let temp = custom_goals;
               temp.push(document.querySelector("#newCustomGoal").value);
-              console.log(temp);
               custom_goals = temp;
               isCustomGoalVisHidden = true;
               isOverlayVisHidden = true;
@@ -495,27 +706,87 @@ let journalEntry = $state({
         <h2>Custom Goals</h2>
         <button
           class="new-goal-btn"
+          style="font-size: 20px; margin-top: -30px"
           onclick={() => {
             isCustomGoalVisHidden = false;
             isOverlayVisHidden = false;
           }}>+ New Goal</button
         ><br />
 
-        {#each custom_goals as goal}
-          <div style="padding-top: 10px;">
-            <input id="goal" type="checkbox" />
-            <label class="custom-goal" for="goal">{goal}</label><br />
-          </div>
-        {/each}
+        <div style="margin: 0 auto; padding-left: 180px">
+          {#each custom_goals as goal}
+            <div style="padding-top: 10px; text-align: left;">
+              <input
+                id="goal"
+                type="checkbox"
+                value={goal}
+                onclick={() => {
+                  for (let i = 0; i < custom_goals.length; i++) {
+                    if (custom_goals[i] == goal) {
+                      console.log(user.customGoals);
+                      let test = user.customGoals;
+                      test = test.splice(i, 1);
+                      user.customGoals = test;
+
+                      // for some reason, when one check box goes away, the next one becomes checked. this fixed it
+                      document.querySelector("#goal").checked = false;
+
+                      rewardPainting();
+                    }
+                  }
+                }}
+              />
+              <label class="custom-goal" for="goal">{goal}</label><br />
+            </div>
+          {/each}
+        </div>
       </div>
 
-      <div class="journalEntries" style="background-color: white">
+      <div class="journalEntries">
         <h2>Journal Entries</h2>
 
-        {#each journalEntry.journalEntry.slice().reverse() as entry}
+        {#each journalEntry.journalEntry.slice().reverse().slice(0, 5) as entry}
           <div class="journalEntry">
             <div class="journalInfo">
-              <h3><b>{entry.bookTitle}</b></h3>
+              <button
+                class="icon-btn"
+                onclick={() => {
+                  isJournalViewHidden = false;
+                  isOverlayVisHidden = false;
+                  currJournalView = entry
+
+                  console.log(currJournalView)
+                }}><h3><b>{entry.bookTitle}</b></h3></button
+              >
+
+              <!-- View Journal Entry -->
+              <div
+                style="height: 550px; width: 500px; background-color: white;
+                        margin-left: 35.3%;"
+                class="popup"
+                hidden={isJournalViewHidden}
+              >
+                <button
+                  class="icon-btn"
+                  onclick={() => {
+                    isJournalViewHidden = true;
+                    isOverlayVisHidden = true;
+
+
+                  }}
+                  ><i
+                    class="bi bi-x-lg"
+                    style="top: 0; right: 0; position: absolute; margin-top: 15px; margin-right: 15px; font-size: 20px"
+                  ></i></button
+                >
+                  <h2>Journal Entry for {currJournalView.bookTitle}</h2>
+                  <h2 style="text-align: center; margin-top: -20px">{currJournalView.date}</h2>
+
+                  <h3 style="text-align: center">Pages {currJournalView.pagesFrom} to {currJournalView.pagesTo}</h3>
+                  <p style="margin-left: 100px; margin: right: 100px; margin-top: 20px" id="view-journal-entry-message">{currJournalView.message}</p>
+
+              </div>
+
               <p>{entry.date}</p>
             </div>
 
@@ -528,7 +799,17 @@ let journalEntry = $state({
         {/each}
 
         <!-- will not do anything -->
-        <a style="margin-left: 40%" href="/journal">See older entries</a>
+        <div style="text-align: center">
+          <button
+            style="text-decoration: underline; font-size: 1em; padding-bottom: 15px"
+            class="icon-btn"
+            onclick={() => {
+              alert(
+                "This would route to a new page and show all journal entries"
+              );
+            }}>See older entries</button
+          >
+        </div>
 
         <div
           class="popup"
@@ -603,48 +884,75 @@ let journalEntry = $state({
         </div>
       </div>
 
-      <!-- <div class="gallery">
-      <h2>Gallery</h2>
-                                                        </div> -->
+      <div class="gallery">
+        <h2 style="margin-bottom: 20px">
+          <a onmouseenter={ hoverGalleryInfo } onmouseleave={hoverGalleryInfo}><i style="font-weight: bold" class="bi bi-info-circle" on></i></a><button style="font-size: 1em; font-weight: bold; margin-left: 5px;" class="icon-btn" onclick={() => {
+            alert("This would route to a new page and display all of the art you have 'earned' ")
+          }}>Gallery</button>
+        </h2>
+
+        <div style="    background-color: white;
+    color: black;
+    width: 350px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 150px;
+    margin-right: 90px;
+    font-size: 20px;
+    padding: 20px;
+    box-shadow: 0 0 3px black; z-index: 100;" hidden={isGalleryInfoHidden}>
+    <div style="text-align: center">
+        <h4>What is the Gallery?</h4>
+        </div>
+        <p style="text-align: left">  Every time you complete a goal, you earn a painting to put in your gallery. These painting are randomly chosen from the Rijksmuseum database.
+        </p><br>
+        <div style="text-align: center">
+        <h4>How do you earn a painting?</h4></div>
+        <p style="text-align: left">  You earn a painting by either (a) Finishing a book or (b) Completing one of your custom goals</p>
+        </div>
+
+        {#each gallery.gallery.slice().reverse().slice(0, 3) as painting}
+          <div class="painting">
+            <img
+              src={painting.imgURL}
+              style="max-height: 300px; max-width: 300px"
+            /><br />
+          </div>
+        {/each}
+
+        {#if !isPaintingViewHidden}
+          <div
+            class="popup"
+            style="width: 1100px; height: 720px; text-align: center; margin-left: 20%; margin-top: 50px"
+          >
+            <button
+              class="icon-btn"
+              onclick={() => {
+                isPaintingViewHidden = true;
+                isOverlayVisHidden = true;
+              }}
+              ><i
+                class="bi bi-x-lg"
+                style="top: 0; right: 0; position: absolute; margin-top: 15px; margin-right: 15px; font-size: 20px"
+              ></i></button
+            >
+            <div style="margin: 3em">
+              <img
+                style="max-height: 600px; max-width: 900px"
+                src={paintingURL}
+              />
+              <h3 style="padding-bottom: 20px">{painting.title}</h3>
+            </div>
+          </div>
+        {/if}
+      </div>
     </div>
   </container>
-
-  <div class="overlay" hidden={isOverlayVisHidden}></div>
+  <br />
+  <br />
 </main>
 
 <style>
   @import "../app.css";
-
-  .custom-goal {
-    font-size: 20px;
-  }
-
-  input[type="checkbox"] {
-    width: 25px;
-    height: 25px;
-  }
-
-  input[type="checkbox"],
-  .custom-goal {
-    vertical-align: middle;
-  }
-
-  .popup {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    background-color: white;
-    margin-top: 150px;
-  }
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(100% - 80px);
-    margin-top: 80px;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
 </style>

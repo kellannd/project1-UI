@@ -12,10 +12,7 @@
 </script>
 <main>
   <div class="header">
-    <nav>
-      <a href="/">Home</a>
-    </nav>
-    <a on:mouseenter={ hoverUserInfo } on:mouseleave={hoverUserInfo} href="/user"><i class="bi bi-person-circle"></i></a>
+    <a on:mouseenter={ hoverUserInfo } on:mouseleave={hoverUserInfo}><i class="bi bi-person-circle"></i></a>
     <div class="userInfo" hidden = { isUserInfoHidden }>
       <p>User: User</p>
       <p>Joined: January 1, 2023</p>
@@ -35,9 +32,10 @@
     text-align: center;
     font-size: 20px;
     padding: 20px;
+    box-shadow: 0 0 3px black;
 }
   .header {
-    background-color: #4b371c;
+    background-color: #443B3D;
     color: #f1f1f1;
     height: 80px;
     position: relative;
