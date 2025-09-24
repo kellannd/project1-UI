@@ -1,8 +1,15 @@
+Deployed [here](https://68d35fc7b7cbbeb63d84d2fb--reading-journal-project.netlify.app/)
+Video [here](https://drive.google.com/file/d/1prfWGTjAwwIvC0PbyeEQvLfYNOBUSaWM/view?usp=sharing)
+
 # What is this project?
 This is a journal for a user to track their reading. As they continue to complete their goals, they will earn a "painting" to put in their digital gallery.
 
 # Interface
 ## Current User Features
+### User Info
+The user can hover over the user icon and see their info.
+<img src="/journal-project/static/screenshots/Screenshot 2025-09-23 233359.png" height="400px"><br>
+
 ### Adding a new Journal Entry
 If the user wants to create a new journal entry, they can click on the "I read today!" button. This will open a popup for the new journal entry.
 <img src="/journal-project/static/screenshots/image-9.png" height="400px"><br>
