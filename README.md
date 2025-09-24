@@ -5,7 +5,7 @@ This is a journal for a user to track their reading. As they continue to complet
 ## Current User Features
 ### View a Journal Entry
 The home pages shows the user the 5 most recent journal entries. To view any journal entry, click on the title of the book.
-![Journal Entries Section](/journal-project/static/screenshots/image.png)
+![Journal Entries Section](/journal-project/static/screenshots/image.png  =400x400)
 
 A view with the journal entry opens in a popup. Click the 'X' at the top of the screen to exit the view.
 ![Journal Entry View](/journal-project/static/screenshots/image-1.png)
