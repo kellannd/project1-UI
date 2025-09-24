@@ -313,7 +313,7 @@
 
   function rewardPainting() {
     let request =
-      "https://www.rijksmuseum.nl/api/en/collection?key="+ RIJK_KEY + "&type=painting&toppieces=true&ps=50";
+      "https://www.rijksmuseum.nl/api/en/collection?key=cLDgNrG3&type=painting&toppieces=true&ps=50";
     fetch(request, {
       mode: "cors",
     })
