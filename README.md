@@ -72,11 +72,19 @@ New paintings earned will also populate in your gallery.
 
 # Design Work
 ## Interview
+I have interviewed 2 people so far that I know casually use other reading trackers, such as Goodreads. I asked them what they like and don’t like in the current tracker that they use. One person indicated that they would like a way to track goals other than book count and would like to create custom goals. They also indicated that having some kind of reward system would make them more likely to log in the journal.
+
 ## Sketching
-##
+Sketches can be found [here](/journal-project/static/sketches/)
+
+## Feedback
+I originally went with a brighter styling for my website (using an off-white background and brighter accent colors). However, I got some feedback from some of the people I originally interviewed, and they suggested a more muted color scheme. They also suggested a darker background to give it more of an "art gallery" feel.
 
 # Implimentation
-##
+Svelte-Kit was used to create the base for this app and was hosted on Netlify.
+
+The [Rijksmuseum API](https://github.com/Rijksmuseum/rijksmuseum.github.io/tree/master) was used to access these paintings from [The Collection](https://www.rijksmuseum.nl/en/collection).
+
 ## Styling
 All icons used were taken from [Bootstrap Icons](https://icons.getbootstrap.com/).
 
