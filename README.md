@@ -1,4 +1,4 @@
-Deployed [here](https://68d35fc7b7cbbeb63d84d2fb--reading-journal-project.netlify.app/)
+Deployed [here](https://68d35fc7b7cbbeb63d84d2fb--reading-journal-project.netlify.app/)<br>
 Video [here](https://drive.google.com/file/d/1prfWGTjAwwIvC0PbyeEQvLfYNOBUSaWM/view?usp=sharing)
 
 # What is this project?
@@ -7,14 +7,14 @@ This is a journal for a user to track their reading. As they continue to complet
 # Interface
 ## Current User Features
 ### User Info
-The user can hover over the user icon and see their info.
+The user can hover over the user icon and see their info.<br>
 <img src="/journal-project/static/screenshots/Screenshot 2025-09-23 233359.png" height="400px"><br>
 
 ### Adding a new Journal Entry
-If the user wants to create a new journal entry, they can click on the "I read today!" button. This will open a popup for the new journal entry.
+If the user wants to create a new journal entry, they can click on the "I read today!" button. This will open a popup for the new journal entry.<br>
 <img src="/journal-project/static/screenshots/image-9.png" height="400px"><br>
 
-The user can pick the book they want to journal about, or enter a new book.
+The user can pick the book they want to journal about, or enter a new book.<br>
 <img src="/journal-project/static/screenshots/Screenshot 2025-09-23 213307.png" height="400px"><br>
 
 If the user wants to enter a new book, the view will change to allow the user to enter the title, author, and page count.
