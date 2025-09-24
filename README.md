@@ -8,7 +8,7 @@ If the user wants to create a new journal entry, they can click on the "I read t
 <img src="/journal-project/static/screenshots/image-9.png" height="400px"><br>
 
 The user can pick the book they want to journal about, or enter a new book.
-<img src="Screenshot 2025-09-23 213307.png" height="400px"><br>
+<img src="/journal-project/static/screenshots/Screenshot 2025-09-23 213307.png" height="400px"><br>
 
 If the user wants to enter a new book, the view will change to allow the user to enter the title, author, and page count.
 <img src="/journal-project/static/screenshots/image-10.png" height="400px"><br>
