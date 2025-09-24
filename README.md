@@ -81,6 +81,11 @@ New paintings earned will also populate in your gallery.
 ## Interview
 I have interviewed 2 people so far that I know casually use other reading trackers, such as Goodreads. I asked them what they like and don’t like in the current tracker that they use. One person indicated that they would like a way to track goals other than book count and would like to create custom goals. They also indicated that having some kind of reward system would make them more likely to log in the journal.
 
+Interview Questions:
+What do you currently use to track your reading for the year?
+What would be the most important things you would want tracked?
+What is the most important element that you look for in a UI?
+
 ## Sketching
 Sketches can be found [here](/journal-project/static/sketches/)
 
